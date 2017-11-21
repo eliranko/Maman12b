@@ -27,8 +27,10 @@ public class MyOval extends MyBoundedShape {
     
     @Override
     public void draw(Graphics graphics) {
-        graphics.drawOval(getX1(), getY1(), getX2(), getY2());
         graphics.setColor(getColor());
-        graphics.fillOval(getX1(), getY1(), getX2(), getY2());
+        graphics.drawOval(getX1(), getY1(), getX2(), getY2());
+        if(getIsFilled()) {
+            graphics.fillOval(getX1(), getY1(), getX2(), getY2());
+        }
     }
 }

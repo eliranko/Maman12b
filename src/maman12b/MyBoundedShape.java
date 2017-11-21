@@ -35,4 +35,14 @@ public abstract class MyBoundedShape extends MyShape {
         MyBoundedShape bound = (MyBoundedShape) obj;
         return getX2() == bound.getX2() && getY2() == bound.getY2();
     }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        MyBoundedShape shape = (MyBoundedShape) super.clone();
+        shape.setIsFilled(!isFilled);
+        
+        return shape;
+    }
+    
+    
 }

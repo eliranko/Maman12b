@@ -33,7 +33,7 @@ public class MyLine extends MyShape {
     
     @Override
     public void draw(Graphics graphics) {
-        graphics.drawLine(getX1(), getY1(), getX2(), getY2());
         graphics.setColor(getColor());
+        graphics.drawLine(getX1(), getY1(), getX2(), getY2());
     }
 }

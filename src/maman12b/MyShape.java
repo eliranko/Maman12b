@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  *
  * @author elira
  */
-public abstract class MyShape extends JPanel implements Cloneable {
+public abstract class MyShape implements Cloneable {
     private int x1;
     private int x2;
     private int y1;
@@ -70,13 +70,10 @@ public abstract class MyShape extends JPanel implements Cloneable {
     
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
-    
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        draw(g);
+        MyShape shape = (MyShape) super.clone();
+        shape.color = this.color;
+        
+        return shape;
     }
     
     public abstract void draw(Graphics graphics);

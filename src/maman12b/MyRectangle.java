@@ -27,8 +27,10 @@ public class MyRectangle extends MyBoundedShape {
     
     @Override
     public void draw(Graphics graphics) {
-        graphics.drawRect(getX1(), getY1(), getX2(), getY2());
         graphics.setColor(getColor());
-        graphics.fillRect(getX1(), getY1(), getX2(), getY2());
+        graphics.drawRect(getX1(), getY1(), getX2(), getY2());
+        if(getIsFilled()) {
+            graphics.fillRect(getX1(), getY1(), getX2(), getY2());
+        }
     }
 }

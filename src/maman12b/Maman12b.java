@@ -27,13 +27,31 @@ public class Maman12b {
         shapes.add(getOval(Color.BLUE, true));
         shapes.add(getOval(Color.RED, false));
         shapes.add(getRectangle(Color.green, true));
-        shapes.add(getRectangle(Color.yellow, false));
+        shapes.add(getRectangle(Color.BLACK, false));
+        
+        ArrayList<MyShape> clonedShapes = new ArrayList<>();
+        for(MyShape shape : shapes) {
+            MyShape clonedShape;
+            try {
+                clonedShape = (MyShape) shape.clone();
+            }
+            catch(CloneNotSupportedException e) {
+                System.out.println(e);
+                return;
+            }
+            clonedShape.setX1(shape.getX1() + 10);
+            clonedShape.setY1(shape.getY1() + 10);
+            
+            clonedShapes.add(clonedShape);
+        }
+        
+        MyPanel panel = new MyPanel();
+        panel.addShapes(shapes);
+        panel.addShapes(clonedShapes);
         
         // draw
         JFrame frame = new JFrame();
-        for(int i = 0; i < shapes.size(); i++) {
-            frame.add(shapes.get(i));
-        }
+        frame.add(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 400);
         frame.setVisible(true);
