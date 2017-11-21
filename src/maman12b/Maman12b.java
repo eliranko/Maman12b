@@ -5,17 +5,56 @@
  */
 package maman12b;
 
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Random;
+import javax.swing.JFrame;
+
 /**
  *
  * @author elira
  */
 public class Maman12b {
 
-    /**
-     * @param args the command line arguments
-     */
+    private static final Random RAND = new Random();
+    
     public static void main(String[] args) {
-        // TODO code application logic here
+        ArrayList<MyShape> shapes = new ArrayList<>();
+        
+        // set shapes
+        shapes.add(getLine(Color.BLUE));
+        shapes.add(getLine(Color.MAGENTA));
+        shapes.add(getOval(Color.BLUE, true));
+        shapes.add(getOval(Color.RED, false));
+        shapes.add(getRectangle(Color.green, true));
+        shapes.add(getRectangle(Color.yellow, false));
+        
+        // draw
+        JFrame frame = new JFrame();
+        for(int i = 0; i < shapes.size(); i++) {
+            frame.add(shapes.get(i));
+        }
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 400);
+        frame.setVisible(true);
     }
     
+    private static MyLine getLine(Color color) {
+        return new MyLine(getRandomCoordinate(), getRandomCoordinate(), 
+                getRandomCoordinate(), getRandomCoordinate(), color);
+    }
+    
+    private static MyOval getOval(Color color, boolean isFilled) {
+        return new MyOval(getRandomCoordinate(), getRandomCoordinate(), 
+                getRandomCoordinate(), getRandomCoordinate(), color, isFilled);
+    }
+    
+    private static MyRectangle getRectangle(Color color, boolean isFilled) {
+        return new MyRectangle(getRandomCoordinate(), getRandomCoordinate(), 
+                getRandomCoordinate(), getRandomCoordinate(), color, isFilled);
+    }
+    
+    private static int getRandomCoordinate() {
+        return RAND.nextInt(201);
+    }
 }

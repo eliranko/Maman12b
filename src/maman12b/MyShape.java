@@ -5,21 +5,27 @@
  */
 package maman12b;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import javax.swing.JPanel;
+
 /**
  *
  * @author elira
  */
-public abstract class MyShape implements Cloneable {
+public abstract class MyShape extends JPanel implements Cloneable {
     private int x1;
     private int x2;
     private int y1;
     private int y2;
+    private Color color;
     
-    public MyShape(int x1, int y1, int x2, int y2) {
+    public MyShape(int x1, int y1, int x2, int y2, Color color) {
         this.x1 = x1;
         this.y1 = y1;
         this.x2 = x2;
         this.y2 = y2;
+        this.color = color;
     }
     
     public int getX1() {
@@ -54,19 +60,24 @@ public abstract class MyShape implements Cloneable {
         this.y2 = y2;
     }
 
+    public Color getColor() {
+        return color;
+    }
+    
+    public void setColor(Color color) {
+        this.color = color;
+    }
+    
     @Override
     protected Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
     
     @Override
-    public boolean equals(Object obj) {
-        if(obj == null || !(obj instanceof MyShape)) return false;
-        
-        MyShape shape = (MyShape) obj;
-        return getX1() == shape.getX1() 
-                && getY1() == shape.getY1() 
-                && getX2() == shape.getX2()
-                && getY2() == shape.getY2();
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        draw(g);
     }
+    
+    public abstract void draw(Graphics graphics);
 }

@@ -5,6 +5,8 @@
  */
 package maman12b;
 
+import java.awt.Color;
+
 /**
  *
  * @author elira
@@ -12,8 +14,8 @@ package maman12b;
 public abstract class MyBoundedShape extends MyShape {
     private boolean isFilled;
     
-    public MyBoundedShape(int x1, int y1, int x2, int y2, boolean isFilled) {
-        super(x1, y1, x2, y2);
+    public MyBoundedShape(int x1, int y1, int x2, int y2, Color color, boolean isFilled) {
+        super(x1, y1, x2, y2, color);
         
         this.isFilled = isFilled;
     }
@@ -31,6 +33,6 @@ public abstract class MyBoundedShape extends MyShape {
         if(obj == null || !(obj instanceof MyBoundedShape)) return false;
         
         MyBoundedShape bound = (MyBoundedShape) obj;
-        return super.equals(obj) && isFilled == bound.getIsFilled();
+        return getX2() == bound.getX2() && getY2() == bound.getY2();
     }
 }
